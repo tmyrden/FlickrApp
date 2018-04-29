@@ -9,7 +9,7 @@
 #import "FlickrInterface.h"
 #import "FlickrPhoto.h"
 #import "AppDelegate.h"
-@import UIKit;
+#import "FlickrQuery.h"
 
 @interface FlickrInterface ()
 
@@ -78,7 +78,9 @@
 - (NSURL *)urlFromQuery {
     NSString *baseUrl = @"https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=675894853ae8ec6c242fa4c077bcf4a0&text=%@&extras=url_s&format=json&nojsoncallback=1&per_page=10&page=%@&sort=relevance";
 
-    NSString *finalUrl = [NSString stringWithFormat:baseUrl, self.flickrQuery.queryString, self.flickrQuery.pageCount];
+    NSString *searchTerm = [self.flickrQuery.queryString stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
+
+    NSString *finalUrl = [NSString stringWithFormat:baseUrl, searchTerm, self.flickrQuery.pageCount];
 
     return [NSURL URLWithString:finalUrl];
 }

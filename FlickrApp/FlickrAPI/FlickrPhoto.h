@@ -7,8 +7,8 @@
 //
 
 #import <CoreData/CoreData.h>
-#import "FlickrQuery.h"
 
+@class FlickrQuery;
 @interface FlickrPhoto : NSManagedObject
 
 @property (nonatomic, strong) NSData *photoData;

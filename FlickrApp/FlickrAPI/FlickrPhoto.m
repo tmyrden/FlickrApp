@@ -7,7 +7,7 @@
 //
 
 #import "FlickrPhoto.h"
-#import "AppDelegate.h"
+#import "FlickrQuery.h"
 
 @implementation FlickrPhoto
 @dynamic url_s;

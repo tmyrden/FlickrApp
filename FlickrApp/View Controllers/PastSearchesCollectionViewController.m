@@ -11,6 +11,7 @@
 #import "AppDelegate.h"
 #import "FlickrInterface.h"
 #import "FlickrPhoto.h"
+#import "FlickrQuery.h"
 #import "SearchResultsCollectionViewController.h"
 
 @interface PastSearchesCollectionViewController () <NSFetchedResultsControllerDelegate, UICollectionViewDelegateFlowLayout>
@@ -31,14 +32,10 @@ static NSString * const resultsReuseIdentifier = @"PastSearchesCollectionViewCel
     [super viewDidLoad];
     self.updatedIndices = [NSMutableArray new];
     self.insertedIndices = [NSMutableArray new];
+    self.title = @"Past Searches";
 
-    self.collectionView.backgroundColor = [UIColor blueColor];
     [self.collectionView registerClass:[PastSearchesCollectionViewCell class] forCellWithReuseIdentifier:resultsReuseIdentifier];
 
-    [self updateData];
-}
-
-- (void)updateData {
     [self.fetchedResultsController performFetch:nil];
 }
 
@@ -67,7 +64,8 @@ static NSString * const resultsReuseIdentifier = @"PastSearchesCollectionViewCel
 
             break;
         }
-            // Not worrying about other Change Types in the context of this assignment
+        case NSFetchedResultsChangeMove:
+        case NSFetchedResultsChangeDelete:
         default: {
             break;
         }
@@ -102,9 +100,7 @@ static NSString * const resultsReuseIdentifier = @"PastSearchesCollectionViewCel
 
     FlickrQuery *query = [self.fetchedResultsController objectAtIndexPath:indexPath];
 
-    cell.backgroundColor = [UIColor greenColor];
     [cell.button setTitle:query.queryString forState:UIControlStateNormal];
-    [cell.button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [cell.button addTarget:self action:@selector(didPressPastSearchItem:) forControlEvents:UIControlEventTouchUpInside];
 
     return cell;

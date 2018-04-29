@@ -83,30 +83,54 @@
 			children = (
 				01BF78AA209601390049D9AA /* AppDelegate.h */,
 				01BF78AB209601390049D9AA /* AppDelegate.m */,
-				01BF78AD209601390049D9AA /* ViewController.h */,
-				01BF78AE209601390049D9AA /* ViewController.m */,
 				01BF78B0209601390049D9AA /* Main.storyboard */,
 				01BF78B6209601390049D9AA /* Assets.xcassets */,
 				01BF78B8209601390049D9AA /* LaunchScreen.storyboard */,
 				01BF78BB209601390049D9AA /* Info.plist */,
 				01BF78BC209601390049D9AA /* main.m */,
 				01BF78B3209601390049D9AA /* FlickrApp.xcdatamodeld */,
+				01D170D0209649AF00BE234D /* FlickrAPI */,
+				01D170CF2096499000BE234D /* View Controllers */,
+				01D170D1209649DA00BE234D /* Views */,
+			);
+			path = FlickrApp;
+			sourceTree = "<group>";
+		};
+		01D170CF2096499000BE234D /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				01BF78AD209601390049D9AA /* ViewController.h */,
+				01BF78AE209601390049D9AA /* ViewController.m */,
 				01BF78C3209604580049D9AA /* SearchResultsCollectionViewController.h */,
 				01BF78C4209604580049D9AA /* SearchResultsCollectionViewController.m */,
-				01BF78C6209604C40049D9AA /* SearchResultsCollectionViewCell.h */,
-				01BF78C7209604C40049D9AA /* SearchResultsCollectionViewCell.m */,
+				01A4D0AA209633B100CE196F /* PastSearchesCollectionViewController.h */,
+				01A4D0AB209633B100CE196F /* PastSearchesCollectionViewController.m */,
+			);
+			path = "View Controllers";
+			sourceTree = "<group>";
+		};
+		01D170D0209649AF00BE234D /* FlickrAPI */ = {
+			isa = PBXGroup;
+			children = (
 				01BF78C9209608D80049D9AA /* FlickrInterface.h */,
 				01BF78CA209608D80049D9AA /* FlickrInterface.m */,
 				01BF78CC20960FE70049D9AA /* FlickrPhoto.h */,
 				01BF78CD20960FE70049D9AA /* FlickrPhoto.m */,
 				01BF78F7209631AD0049D9AA /* FlickrQuery.h */,
 				01BF78F8209631AD0049D9AA /* FlickrQuery.m */,
-				01A4D0AA209633B100CE196F /* PastSearchesCollectionViewController.h */,
-				01A4D0AB209633B100CE196F /* PastSearchesCollectionViewController.m */,
+			);
+			path = FlickrAPI;
+			sourceTree = "<group>";
+		};
+		01D170D1209649DA00BE234D /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				01BF78C6209604C40049D9AA /* SearchResultsCollectionViewCell.h */,
+				01BF78C7209604C40049D9AA /* SearchResultsCollectionViewCell.m */,
 				01A4D0AD2096340900CE196F /* PastSearchesCollectionViewCell.h */,
 				01A4D0AE2096340900CE196F /* PastSearchesCollectionViewCell.m */,
 			);
-			path = FlickrApp;
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

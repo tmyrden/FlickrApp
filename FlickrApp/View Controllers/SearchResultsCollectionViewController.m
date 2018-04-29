@@ -11,6 +11,7 @@
 #import "AppDelegate.h"
 #import "FlickrInterface.h"
 #import "FlickrPhoto.h"
+#import "FlickrQuery.h"
 
 @interface SearchResultsCollectionViewController () <NSFetchedResultsControllerDelegate, UICollectionViewDelegateFlowLayout>
 
@@ -31,8 +32,8 @@ static NSString * const resultsReuseIdentifier = @"SearchResultsCollectionViewCe
     self.updatedIndices = [NSMutableArray new];
     self.insertedIndices = [NSMutableArray new];
     self.appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    self.title = self.searchQuery;
 
-    self.collectionView.backgroundColor = [UIColor blueColor];
     [self.collectionView registerClass:[SearchResultsCollectionViewCell class] forCellWithReuseIdentifier:resultsReuseIdentifier];
 
     [self updateData];

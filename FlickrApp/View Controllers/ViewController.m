@@ -26,6 +26,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    self.title = @"FlickrApp";
+
     [self.view addSubview:self.searchTextField];
     [self.view addSubview:self.searchButton];
     [self.view addSubview:self.pastSearchesButton];
@@ -36,15 +38,17 @@
 
 - (void)setupConstraints {
     [self.searchTextField.leadingAnchor constraintEqualToAnchor:self.view.layoutMarginsGuide.leadingAnchor].active = YES;
-    [self.searchTextField.trailingAnchor constraintEqualToAnchor:self.view.layoutMarginsGuide.trailingAnchor].active = YES;
-    [self.searchTextField.centerYAnchor constraintEqualToAnchor:self.view.centerYAnchor].active = YES;
-    [self.searchTextField.heightAnchor constraintEqualToConstant:44].active = YES;
+    [self.searchTextField.trailingAnchor constraintEqualToAnchor:self.searchButton.leadingAnchor constant:-8.f].active = YES;
+    [self.searchTextField.topAnchor constraintEqualToAnchor:self.view.layoutMarginsGuide.topAnchor constant:44.f].active = YES;
+    [self.searchTextField.heightAnchor constraintEqualToConstant:44.f].active = YES;
+    [self.searchTextField setContentHuggingPriority:UILayoutPriorityDefaultLow forAxis:UILayoutConstraintAxisHorizontal];
 
-    [self.searchButton.centerXAnchor constraintEqualToAnchor:self.view.centerXAnchor].active = YES;
-    [self.searchButton.topAnchor constraintEqualToAnchor:self.searchTextField.bottomAnchor].active = YES;
+    [self.searchButton.trailingAnchor constraintEqualToAnchor:self.view.layoutMarginsGuide.trailingAnchor].active = YES;
+    [self.searchButton.centerYAnchor constraintEqualToAnchor:self.searchTextField.centerYAnchor].active = YES;
+    [self.searchButton setContentHuggingPriority:UILayoutPriorityDefaultHigh forAxis:UILayoutConstraintAxisHorizontal];
 
     [self.pastSearchesButton.centerXAnchor constraintEqualToAnchor:self.view.centerXAnchor].active = YES;
-    [self.pastSearchesButton.topAnchor constraintEqualToAnchor:self.searchButton.bottomAnchor].active = YES;
+    [self.pastSearchesButton.topAnchor constraintEqualToAnchor:self.searchButton.bottomAnchor constant:44.f].active = YES;
 
     [self.clearCacheButton.centerXAnchor constraintEqualToAnchor:self.view.centerXAnchor].active = YES;
     [self.clearCacheButton.topAnchor constraintEqualToAnchor:self.pastSearchesButton.bottomAnchor].active = YES;
@@ -57,8 +61,12 @@
     if (!_searchTextField) {
         _searchTextField = [[UITextField alloc] initWithFrame:CGRectZero];
         _searchTextField.translatesAutoresizingMaskIntoConstraints = NO;
-        _searchTextField.backgroundColor = [UIColor redColor];
+        _searchTextField.backgroundColor = [UIColor lightGrayColor];
         _searchTextField.returnKeyType = UIReturnKeySearch;
+        _searchTextField.textAlignment = NSTextAlignmentCenter;
+        _searchTextField.layer.cornerRadius = 8.f;
+        _searchTextField.clipsToBounds = YES;
+        _searchTextField.placeholder = @"Image Search";
         _searchTextField.delegate = self;
     }
     return _searchTextField;
@@ -68,7 +76,7 @@
     if (!_pastSearchesButton) {
         _pastSearchesButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [_pastSearchesButton setTitle:@"Past Searches" forState:UIControlStateNormal];
-        [_pastSearchesButton setTitleColor:[UIColor greenColor] forState:UIControlStateNormal];
+        [_pastSearchesButton setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
         [_pastSearchesButton addTarget:self action:@selector(didPressPastSearchesButton:) forControlEvents:UIControlEventTouchUpInside];
         _pastSearchesButton.translatesAutoresizingMaskIntoConstraints = NO;
     }
@@ -108,18 +116,23 @@
 #pragma mark - UITextViewDelegate
 
 - (void)didPressSearchButton:(UIButton *)sender {
+    if ([self.searchTextField.text isEqualToString:@""]) {
+        return;
+    }
     [self.searchTextField resignFirstResponder];
 
     [self performSegueWithIdentifier:@"ShowSearchResults" sender:self];
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    if ([self.searchTextField.text isEqualToString:@""]) {
+        return NO;
+    }
     [textField resignFirstResponder];
 
     [self performSegueWithIdentifier:@"ShowSearchResults" sender:self];
     return YES;
 }
-
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"ShowSearchResults"]) {
         SearchResultsCollectionViewController *vc = segue.destinationViewController;
