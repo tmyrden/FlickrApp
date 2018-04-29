@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		01A4D0AC209633B100CE196F /* PastSearchesCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 01A4D0AB209633B100CE196F /* PastSearchesCollectionViewController.m */; };
+		01A4D0AF2096340900CE196F /* PastSearchesCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 01A4D0AE2096340900CE196F /* PastSearchesCollectionViewCell.m */; };
 		01BF78AC209601390049D9AA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 01BF78AB209601390049D9AA /* AppDelegate.m */; };
 		01BF78AF209601390049D9AA /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 01BF78AE209601390049D9AA /* ViewController.m */; };
 		01BF78B2209601390049D9AA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 01BF78B0209601390049D9AA /* Main.storyboard */; };
@@ -22,6 +24,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		01A4D0AA209633B100CE196F /* PastSearchesCollectionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PastSearchesCollectionViewController.h; sourceTree = "<group>"; };
+		01A4D0AB209633B100CE196F /* PastSearchesCollectionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PastSearchesCollectionViewController.m; sourceTree = "<group>"; };
+		01A4D0AD2096340900CE196F /* PastSearchesCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PastSearchesCollectionViewCell.h; sourceTree = "<group>"; };
+		01A4D0AE2096340900CE196F /* PastSearchesCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PastSearchesCollectionViewCell.m; sourceTree = "<group>"; };
 		01BF78A7209601380049D9AA /* FlickrApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FlickrApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		01BF78AA209601390049D9AA /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		01BF78AB209601390049D9AA /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -95,6 +101,10 @@
 				01BF78CD20960FE70049D9AA /* FlickrPhoto.m */,
 				01BF78F7209631AD0049D9AA /* FlickrQuery.h */,
 				01BF78F8209631AD0049D9AA /* FlickrQuery.m */,
+				01A4D0AA209633B100CE196F /* PastSearchesCollectionViewController.h */,
+				01A4D0AB209633B100CE196F /* PastSearchesCollectionViewController.m */,
+				01A4D0AD2096340900CE196F /* PastSearchesCollectionViewCell.h */,
+				01A4D0AE2096340900CE196F /* PastSearchesCollectionViewCell.m */,
 			);
 			path = FlickrApp;
 			sourceTree = "<group>";
@@ -176,6 +186,8 @@
 				01BF78F9209631AD0049D9AA /* FlickrQuery.m in Sources */,
 				01BF78C5209604580049D9AA /* SearchResultsCollectionViewController.m in Sources */,
 				01BF78C8209604C40049D9AA /* SearchResultsCollectionViewCell.m in Sources */,
+				01A4D0AF2096340900CE196F /* PastSearchesCollectionViewCell.m in Sources */,
+				01A4D0AC209633B100CE196F /* PastSearchesCollectionViewController.m in Sources */,
 				01BF78CE20960FE70049D9AA /* FlickrPhoto.m in Sources */,
 				01BF78BD209601390049D9AA /* main.m in Sources */,
 				01BF78B5209601390049D9AA /* FlickrApp.xcdatamodeld in Sources */,

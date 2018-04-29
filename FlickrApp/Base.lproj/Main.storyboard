@@ -23,6 +23,7 @@
                     <navigationItem key="navigationItem" id="KOT-cT-Lg7"/>
                     <connections>
                         <segue destination="1xz-zJ-pHp" kind="show" identifier="ShowSearchResults" id="lU8-FE-z53"/>
+                        <segue destination="Pld-AP-jOe" kind="show" identifier="ShowPastSearches" id="OWl-OP-BYO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -78,5 +79,45 @@
             </objects>
             <point key="canvasLocation" x="1696" y="31"/>
         </scene>
+        <!--Past Searches Collection View Controller-->
+        <scene sceneID="zVF-Yx-bTw">
+            <objects>
+                <collectionViewController id="Pld-AP-jOe" customClass="PastSearchesCollectionViewController" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="5Yk-iV-yOR">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Bli-b5-6kL">
+                            <size key="itemSize" width="50" height="50"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                        <cells>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="wDP-Pw-hJ6">
+                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </view>
+                            </collectionViewCell>
+                        </cells>
+                        <connections>
+                            <outlet property="dataSource" destination="Pld-AP-jOe" id="3KK-RT-asR"/>
+                            <outlet property="delegate" destination="Pld-AP-jOe" id="WTH-QL-GBg"/>
+                        </connections>
+                    </collectionView>
+                    <connections>
+                        <segue destination="1xz-zJ-pHp" kind="show" identifier="ShowPastSearch" id="vjx-ql-pHW"/>
+                    </connections>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JBJ-RB-TZz" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="447" y="918"/>
+        </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="vjx-ql-pHW"/>
+    </inferredMetricsTieBreakers>
 </document>

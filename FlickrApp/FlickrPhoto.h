@@ -7,6 +7,7 @@
 //
 
 #import <CoreData/CoreData.h>
+#import "FlickrQuery.h"
 
 @interface FlickrPhoto : NSManagedObject
 
@@ -16,5 +17,6 @@
 @property (nonatomic, strong) NSNumber *height_s;
 @property (nonatomic, strong) NSString *itemId;
 @property (nonatomic, strong) NSNumber *itemNumber;
+@property (nonatomic) FlickrQuery *query;
 
 @end

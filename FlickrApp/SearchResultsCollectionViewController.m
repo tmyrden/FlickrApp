@@ -18,6 +18,7 @@
 @property (nonatomic, strong) NSMutableArray<NSIndexPath *> *insertedIndices;
 @property (nonatomic, strong) NSMutableArray<NSIndexPath *> *updatedIndices;
 @property (nonatomic) FlickrInterface *flickrInterface;
+@property (nonatomic, weak) AppDelegate *appDelegate;
 
 @end
 
@@ -29,6 +30,7 @@ static NSString * const resultsReuseIdentifier = @"SearchResultsCollectionViewCe
     [super viewDidLoad];
     self.updatedIndices = [NSMutableArray new];
     self.insertedIndices = [NSMutableArray new];
+    self.appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
 
     self.collectionView.backgroundColor = [UIColor blueColor];
     [self.collectionView registerClass:[SearchResultsCollectionViewCell class] forCellWithReuseIdentifier:resultsReuseIdentifier];
@@ -37,21 +39,34 @@ static NSString * const resultsReuseIdentifier = @"SearchResultsCollectionViewCe
 }
 
 - (void)updateData {
+    if (self.searchQuery) {
+        NSManagedObjectContext *objectContext = self.appDelegate.persistentContainer.viewContext;
+
+        NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"FlickrQuery"];
+        fetchRequest.predicate = [NSPredicate predicateWithFormat:@"queryString = %@", self.searchQuery];
+
+        NSArray<FlickrQuery *> *queries = [objectContext executeFetchRequest:fetchRequest error:nil];
+
+        if (queries.count > 0) {
+            self.flickrInterface = [[FlickrInterface alloc] initWithQuery:queries[0]];
+        } else {
+            FlickrQuery *query = [NSEntityDescription insertNewObjectForEntityForName:@"FlickrQuery" inManagedObjectContext:objectContext];
+            query.queryString = self.searchQuery;
+            query.itemCount = @(0);
+            query.pageCount = @(0);
+            self.flickrInterface = [[FlickrInterface alloc] initWithQuery:query];
+        }
+    }
+    
     [self.flickrInterface query];
     [self.fetchedResultsController performFetch:nil];
-}
-
-- (FlickrInterface *)flickrInterface {
-    if (!_flickrInterface) {
-        _flickrInterface = [[FlickrInterface alloc] initWithQuery:self.searchQuery];
-    }
-    return _flickrInterface;
 }
 
 - (NSFetchedResultsController *)fetchedResultsController {
     if (!_fetchedResultsController) {
         AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
         NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"FlickrPhoto"];
+        fetchRequest.predicate = [NSPredicate predicateWithFormat:@"query.queryString = %@", self.searchQuery];
         fetchRequest.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"itemNumber" ascending:YES]];
         _fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:appDelegate.persistentContainer.viewContext sectionNameKeyPath:nil cacheName:nil];
         _fetchedResultsController.delegate = self;

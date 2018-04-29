@@ -7,10 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "FlickrQuery.h"
 
 @interface FlickrInterface : NSObject
 
-- (instancetype)initWithQuery:(NSString *)searchQuery NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithQuery:(FlickrQuery *)flickrQuery NS_DESIGNATED_INITIALIZER;
 - (instancetype)init NS_UNAVAILABLE;
 
 - (void)query;

@@ -11,5 +11,7 @@
 @interface FlickrQuery : NSManagedObject
 
 @property (nonatomic, strong) NSString *queryString;
+@property (nonatomic, strong) NSNumber *itemCount;
+@property (nonatomic, strong) NSNumber *pageCount;
 
 @end

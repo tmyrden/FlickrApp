@@ -15,5 +15,7 @@
 @dynamic itemId;
 @dynamic height_s;
 @dynamic width_s;
+@dynamic itemNumber;
+@dynamic query;
 
 @end

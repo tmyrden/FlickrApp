@@ -10,5 +10,7 @@
 
 @implementation FlickrQuery
 @dynamic queryString;
+@dynamic itemCount;
+@dynamic pageCount;
 
 @end
